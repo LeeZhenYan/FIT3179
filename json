@@ -1,0 +1,37 @@
+{
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"title": "World Bank Youth Unemployment Rates",
+"width": 800,
+"height": 400,
+"projection": {"type": "equalEarth"},
+"data": {
+"url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/ne_110m.json",
+"format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+},
+"transform": [
+{
+"lookup": "properties",
+"from": {
+"data": {
+"url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/API_ILO_country_YU.csv"
+},
+"key": "Country Name",
+"fields": ["2014"]
+}
+},
+{"calculate": "datum.2014 + 0.1", "as": "Youth Unemployment Rates"}
+],
+"mark": {"type": "geoshape"},
+"encoding": {
+"color": {
+"field": "Youth Unemployment Rates",
+"type": "quantitative",
+"scale": {"type": "log"}
+},
+"tooltip": [
+{"field": "properties", "type": "nominal", "title":
+"Country Name"},
+{"field": "2014", "type": "quantitative"}
+]
+}
+}
