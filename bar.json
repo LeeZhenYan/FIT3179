@@ -1,0 +1,34 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 450,
+    "title": "Top 10 countries by World Share",
+    "data": {
+        "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/Petrol%20Dataset%20June%2020%202022%20-%20Cleaned.csv",
+      "values": [
+        {"Country": "United States of America", "Daily Oil Consumption (Barrels)": 19687287},
+        {"Country": "China", "Daily Oil Consumption (Barrels)": 12791553},
+        {"Country": "India", "Daily Oil Consumption (Barrels)": 4443000},
+        {"Country": "Japan", "Daily Oil Consumption (Barrels)": 4012877},
+        {"Country": "Russia", "Daily Oil Consumption (Barrels)": 3631287},
+        {"Country": "Saudi Arabia", "Daily Oil Consumption (Barrels)": 3302000},
+        {"Country": "Brazil", "Daily Oil Consumption (Barrels)": 2984000},
+        {"Country": "South Korea", "Daily Oil Consumption (Barrels)": 2605440},
+        {"Country": "Canada", "Daily Oil Consumption (Barrels)": 2486301},
+        {"Country": "Germany", "Daily Oil Consumption (Barrels)": 2383393}
+      ]
+    },
+    "config": {"view": {"stroke": null}},
+    "mark": {"type": "bar", "cornerRadiusEnd": 6},
+    "encoding": {
+      "x": {"field": "Country", "type": "nominal","axis": {"labelAngle": 45}},
+      "y": {"field": "Daily Oil Consumption (Barrels)", "type": "quantitative",
+             "axis": {"grid": false, "ticks": false}},
+      "color": {"field": "Country", "type": "nominal", "legend": null},
+      "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "Daily Oil Consumption (Barrels)", "type": "quantitative", "format": ","}
+      ],
+      "size": {"value": 55}
+    }
+  }

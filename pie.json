@@ -1,0 +1,30 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 450,
+    "title": "Top 10 countries by World Share",
+    "data": {
+        "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/Petrol%20Dataset%20June%2020%202022%20-%20Cleaned.csv",
+      "values": [
+        {"Country": "United States of America", "World Share": 20.3},
+        {"Country": "China", "World Share": 13.2},
+        {"Country": "India", "World Share": 4.6},
+        {"Country": "Japan", "World Share": 4.1},
+        {"Country": "Russia", "World Share": 3.7},
+        {"Country": "Saudi Arabia", "World Share": 3.4},
+        {"Country": "Brazil", "World Share": 3.1},
+        {"Country": "South Korea", "World Share": 2.7},
+        {"Country": "Canada", "World Share": 2.6},
+        {"Country": "Germany", "World Share": 2.5}
+      ]
+    },
+    "encoding": {
+      "theta": {"field": "World Share", "type": "quantitative", "stack": true},
+      "color": {"field": "Country", "type": "nominal"},
+      "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "World Share", "type": "quantitative", "format": ","}
+  ]
+    },
+      "mark": {"type": "arc"}
+  }

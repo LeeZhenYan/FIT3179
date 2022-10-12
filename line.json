@@ -1,0 +1,31 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 450,
+    "title": "Yearly Gallons Per Capita against countries",
+    "data": {
+        "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/Petrol%20Dataset%20June%2020%202022%20-%20Cleaned.csv"
+        },
+        "config": {"view": {"stroke": null}},
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "transform": [
+          {"filter": 
+              {"field": "Country", "oneOf": ["United States of America","China", "India", "Japan", "Russia", "Saudi Arabia", "Brazil", "South Korea", "Canada", "Germany"]}}
+    ],
+    "encoding": {
+      "x": {"field": "Country", 
+        "type": "nominal", 
+        "axis": {"labelAngle": 45}
+        },
+      "y": {"field": "Yearly Gallons Per Capita", 
+            "type": "quantitative",
+            "axis": {"grid": false, "ticks": false}},
+      "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "Yearly Gallons Per Capita", "type": "quantitative", "format": ","}
+      ]
+    }
+  }

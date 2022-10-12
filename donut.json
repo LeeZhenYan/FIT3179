@@ -1,0 +1,25 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 350,
+    "title": "World Share By Continent",
+    "data": {
+      "values": [
+        {"Continent": "North America", "World Share": 26.04},
+        {"Continent": "South America", "World Share": 6.07},
+        {"Continent": "Europe", "World Share": 15.67},
+        {"Continent": "Asia", "World Share": 46.26},
+        {"Continent": "Africa", "World Share": 4.19},
+        {"Continent": "Oceania", "World Share": 1.38}
+      ]
+    },
+    "mark": {"type": "arc", "innerRadius": 80},
+    "encoding": {
+      "theta": {"field": "World Share", "type": "quantitative"},
+      "color": {"field": "Continent", "type": "nominal"},
+      "tooltip": [
+      {"field": "Continent", "type": "nominal"},
+      {"field": "World Share", "type": "quantitative", "format": ","}
+      ]
+    }
+  }
