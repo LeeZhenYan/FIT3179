@@ -1,32 +1,177 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>PETROL/GAS PRICES WORLDWIDE | An Example</title>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-  
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
   <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
-  <link rel="stylesheet" type="text/css" href="styles_week10.css" media="all">
+  <link rel="stylesheet" type="text/css" href="pure.css" media="all">
+
 
 </head>
 <body>
-  
-<div id="choropleth_map"></div>
-<div id="scatter_plot"></div>
 
+ <div class="page">
+
+   <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-2-3" style = "font-size:20px; ">
+        <h1>PETROL/GAS PRICES WORLDWIDE</h1>
+        <p>In this visualisation, we will study the price of petrol/gas worldwide.
+        </p>
+      </div>
+    </div>
+  <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-2-3"  style = "font-size:15px; ">
+          <div class="description description-left">
+            <h2>DAILY OIL CONSUMPTION OF EACH COUNTRY </h2>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="vis1" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            <h2>TOP 10 COUNTRIES WITH DAILY OIL CONSUMPTION (BARRELS)</h2>
+            <p>The United States has the largest daily oil consumption among the 10 countries, measured in barrels, while Germany has the highest daily oil consumption, measured in barrels. Germany's daily oil use is 726% lower than the United States of America's daily oil consumption.</p>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+            <div class="description description-left">
+                <h2>TOP 10 COUNTRIES BY WORLD SHARE </h2>
+                <p>Referring to the left visualisation, the United States consumes the most oil on a daily basis, so it has the greatest world share, while Germany consumes the least oil on a daily basis, so it has the lowest global share.</p>
+              </div>
+          </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <div id="vis2"  class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-2">
+            <div id="vis3"  class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            <h2>YEARLY GALLONS PER CAPITA AGAINST CONTINENT </h2>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+            <div class="description description-left">
+                <h2>YEARLY GALLONS PER CAPITA VS PRICE PER LITRE(PKR) </h2>
+              </div>
+          </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <div id="vis7"  class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-2">
+            <div id="vis4"  class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            <h2> YEARLY GALLONS PER CAPITA AGAINST COUNTRY</h2>
+            <p>India has the lowest annual yearly gallon per capita among the 10 countries, whereas Saudi Arabia has the highest yearly gallon per capita. Saudi Arabia's yearly gallon per capita is 2935% higher than India's yearly gallon per capita.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+            <div class="description description-left">
+                <h2>WORLD SHARE BY CONTINENT</h2>
+                <p>Oceania has the lowest global share compared to other continents with a share of about 1.38%, while Asia has the biggest share with a share of roughly 46.26%. Asia's global share is 44.88% greater than Oceania's.</p>
+              </div>
+          </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <div id="vis6"  class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-2">
+            <div id="vis5"  class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+  
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by <a href="https://github.com/KadekSatriadi" target="_blank">ZhenYan Lee</a>. The datasource is <a href="#"" target="_blank">some data repository online</href>.</p>
+      </div>
+    </div>
+  
+
+  </div> <!-- end page -->
+   
 <script type="text/javascript">
-  var spec1 = "json";
-  vegaEmbed('#choropleth_map', spec1).then(function(result) {
+  var specVis1 = "map.json";
+  var specVis2= "bar.json";
+  var specVis3= "pie.json";
+  var specVis4= "bubbleplot.json";
+  var specVis5= "donut.json";
+  var specVis6= "line.json";
+  var specVis7= "boxplot.json";
+
+  vegaEmbed('#vis1', specVis1, {"actions": false});
+  
+   vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 
-  var spec2 = "json_week10";
-  vegaEmbed('#scatter_plot', spec2).then(function(result) {
+  vegaEmbed('#vis3', specVis3, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis4', specVis4, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis5', specVis5, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis6', specVis6, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis7', specVis7, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>
-
 </body>
 </html>
