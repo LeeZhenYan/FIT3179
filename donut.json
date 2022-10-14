@@ -1,8 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 400,
-    "height": 350,
-    "title": "World Share By Continent",
+    "width": 550,
+    "height": 400,
     "data": {
       "values": [
         {"Continent": "North America", "World Share": 26.04},
@@ -14,6 +13,7 @@
       ]
     },
     "mark": {"type": "arc", "innerRadius": 80},
+    "background": "lightgray",
     "encoding": {
       "theta": {"field": "World Share", "type": "quantitative"},
       "color": {"field": "Continent", "type": "nominal"},

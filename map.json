@@ -1,7 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "DAILY OIL CONSUMPTION OF EACH COUNTRY",
-    "width": 800,
+    "width": 1100,
     "height": 400,
     "projection": {"type": "equalEarth"},
     "data": {
@@ -21,6 +20,7 @@
 },
 {"calculate": "datum['Daily Oil Consumption (Barrels)'] + 0.1", "as": "Number of Barrels"}
 ],
+"background": "lightgray",
 "mark": {"type": "geoshape",
     "stroke": "#757575",
     "strokeWidth": 1.2},

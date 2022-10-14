@@ -1,13 +1,13 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
+    "width": 550,
     "height": 400,
-    "title": "Yearly Gallons Per Capita against countries",
     "data": {
         "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/Petrol%20Dataset%20June%2020%202022%20-%20Cleaned.csv"
         },
     "config": {"view": {"stroke": null}},
     "mark": "boxplot",
+    "background": "lightgray",
     "encoding": {
       "x": {"field": "Continent", "type": "nominal","axis": {"labelAngle": 45}},
       "color": {"field": "Continent", "type": "nominal", "legend": null},
