@@ -1,39 +1,65 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "DAILY OIL CONSUMPTION OF EACH COUNTRY",
-    "width": 800,
-    "height": 400,
+    "width": 1100,
+    "height": 600,
     "projection": {"type": "equalEarth"},
-    "data": {
-    "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/ne_110m.json",
-    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-    },
-    "transform": [
-    {
-    "lookup": "properties.NAME",
-    "from": {
-    "data": {
-    "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/Petrol%20Dataset%20June%2020%202022%20-%20Cleaned.csv"
-    },
-    "key": "Country",
-    "fields": ["Daily Oil Consumption (Barrels)"]
-}
-},
-{"calculate": "datum['Daily Oil Consumption (Barrels)'] + 0.1", "as": "Number of Barrels"}
-],
-"mark": {"type": "geoshape",
-    "stroke": "#757575",
-    "strokeWidth": 1.2},
-"encoding": {
-"color": {
-"field": "Number of Barrels",
-"type": "quantitative",
-"scale": {"type": "log","scheme": "Blues"}
-},
-"tooltip": [
-{"field": "properties.NAME", "type": "nominal", "title":
-"Country"},
-{"field": "Daily Oil Consumption (Barrels)", "type": "quantitative"}
-]
-}
-}
+    "background": "lightgray",
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/ne_110m.json",
+          "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+        },
+        "mark": {"type": "geoshape","stroke": "#757575","strokeWidth": 1.2, "fill": "reds"}
+      },
+      {
+          "data": {
+            "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson", 
+            "format": {"type": "topojson", "feature": "oceans"}
+          },
+          "mark": {"type": "geoshape", "fill": "#4ab7ee57"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/ne_110m.json", 
+          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+        },
+        "mark": {"type": "geoshape", "fill": null, "stroke": "#86828260"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/Petrol%20Dataset%20June%2020%202022%20-%20Cleaned.csv"
+        },
+        "transform": [
+          {
+            "lookup": "Country",
+            "as": "geo",
+            "from": {
+              "data": {
+                "url": "https://raw.githubusercontent.com/LeeZhenYan/FIT3179/main/ne_110m.json",
+                "format": {
+                  "type": "topojson",
+                  "feature": "ne_110m_admin_0_countries"
+                }
+              }, "key": "properties.NAME"
+            }
+          }
+        ],
+        "mark": {"type": "geoshape"},
+        "encoding": {
+          "shape": {"field": "geo", "type": "geojson"},
+          "color": {
+            "field": "Daily Oil Consumption (Barrels)",
+            "type": "quantitative",
+            "legend": {"title":"Number of Barrels"},
+            "scale": {"type": "log", "scheme": "Reds"}
+          },
+          "tooltip": [
+  {"field": "Country", "type": "nominal", "title":
+  "Country"},
+  {"field": "Daily Oil Consumption (Barrels)", "type": "quantitative"}
+  ]
+        }
+      }
+    ]
+  }
